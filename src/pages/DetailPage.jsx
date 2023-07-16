@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 function DetailPage() {
     const { id } = useParams();
     const [note, setNote] = useState(null);
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         const fetchNote = async () => {
@@ -20,7 +21,12 @@ function DetailPage() {
         };
 
         fetchNote();
+        setLoading(false);
     }, [id]);
+
+    if (isLoading) {
+        return <p>Loading ...</p>;
+    }
 
     if (!note) {
         return <NotFoundPage />;
