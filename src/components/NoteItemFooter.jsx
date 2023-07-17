@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-function NoteItemFooter({ id, archived, onDelete, onArchive, onUnarchive }) {
+const NoteItemFooter = ({ id, archived, onDelete, onArchive, onUnarchive }) => {
     return (
         <div className='note-item__footer'>
             <Link to={`/notes/${id}`}>
@@ -27,7 +27,7 @@ function NoteItemFooter({ id, archived, onDelete, onArchive, onUnarchive }) {
             />
         </div>
     );
-}
+};
 
 NoteItemFooter.propTypes = {
     id: PropTypes.string.isRequired,

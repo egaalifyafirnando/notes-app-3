@@ -1,9 +1,12 @@
 import PropTypes from 'prop-types';
 import NoteItem from './NoteItem';
-import { LocaleConsumer } from '../contexts/LocaleContext';
+import { useContext } from 'react';
+import LocaleContext from '../contexts/LocaleContext';
 
-function NoteList({ notes, onDelete, onUnarchive }) {
-    const archiveNotes = notes.filter((note) => note.archived == true);
+const NoteListArchive = ({ notes, onDelete, onUnarchive }) => {
+    const { locale } = useContext(LocaleContext);
+    const archiveNotes = notes.filter((note) => note.archived);
+
     return (
         <div className='note-list'>
             {archiveNotes.length ? (
@@ -17,26 +20,20 @@ function NoteList({ notes, onDelete, onUnarchive }) {
                     />
                 ))
             ) : (
-                <LocaleConsumer>
-                    {({ locale }) => {
-                        return (
-                            <div className='note-items'>
-                                {locale === 'id'
-                                    ? 'Arsip tidak ditemukan.'
-                                    : 'Archives not found.'}
-                            </div>
-                        );
-                    }}
-                </LocaleConsumer>
+                <div className='note-items'>
+                    {locale === 'id'
+                        ? 'Arsip tidak ditemukan.'
+                        : 'Archives not found.'}
+                </div>
             )}
         </div>
     );
-}
+};
 
-NoteList.propTypes = {
+NoteListArchive.propTypes = {
     notes: PropTypes.arrayOf(PropTypes.object).isRequired,
     onDelete: PropTypes.func.isRequired,
     onUnarchive: PropTypes.func,
 };
 
-export default NoteList;
+export default NoteListArchive;

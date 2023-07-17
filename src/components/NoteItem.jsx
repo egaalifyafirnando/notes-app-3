@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import NoteItemBody from './NoteItemBody';
 import NoteItemFooter from './NoteItemFooter';
 
-function NoteItem({
+const NoteItem = ({
     title,
     body,
     archived,
@@ -11,7 +11,7 @@ function NoteItem({
     onDelete,
     onArchive,
     onUnarchive,
-}) {
+}) => {
     return (
         <div className='note-items'>
             <div className='note-item'>
@@ -26,7 +26,7 @@ function NoteItem({
             </div>
         </div>
     );
-}
+};
 
 NoteItem.propTypes = {
     title: PropTypes.string.isRequired,

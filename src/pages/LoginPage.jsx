@@ -1,10 +1,13 @@
-import PropTypes from 'prop-types';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import LoginInput from '../components/LoginInput';
 import { login } from '../utils/api';
-import { LocaleConsumer } from '../contexts/LocaleContext';
+import LocaleContext from '../contexts/LocaleContext';
 
-function LoginPage({ loginSuccess }) {
+const LoginPage = ({ loginSuccess }) => {
+    const { locale } = useContext(LocaleContext);
+
     async function onLogin({ email, password }) {
         const { error, data } = await login({ email, password });
 
@@ -14,32 +17,22 @@ function LoginPage({ loginSuccess }) {
     }
 
     return (
-        <LocaleConsumer>
-            {({ locale }) => {
-                return (
-                    <section>
-                        <h2>
-                            {locale === 'id'
-                                ? 'Silahkan masuk untuk melanjutkan ...'
-                                : 'Please login to continue...'}
-                        </h2>
-                        <LoginInput login={onLogin} />
-                        <p>
-                            {locale === 'id'
-                                ? 'Belum punya akun?'
-                                : 'No account yet?'}
-                            <Link to='/register'>
-                                {locale === 'id'
-                                    ? 'Daftar disini.'
-                                    : 'register here.'}
-                            </Link>
-                        </p>
-                    </section>
-                );
-            }}
-        </LocaleConsumer>
+        <section>
+            <h2>
+                {locale === 'id'
+                    ? 'Silahkan masuk untuk melanjutkan ...'
+                    : 'Please login to continue...'}
+            </h2>
+            <LoginInput login={onLogin} />
+            <p>
+                {locale === 'id' ? 'Belum punya akun?' : 'No account yet?'}
+                <Link to='/register'>
+                    {locale === 'id' ? 'Daftar disini.' : 'register here.'}
+                </Link>
+            </p>
+        </section>
     );
-}
+};
 
 LoginPage.propTypes = {
     loginSuccess: PropTypes.func.isRequired,

@@ -5,7 +5,7 @@ import { getNote } from '../utils/api';
 import NotFoundPage from '../pages/NotFoundPage';
 import { useState, useEffect } from 'react';
 
-function DetailPage() {
+const DetailPage = () => {
     const { id } = useParams();
     const [note, setNote] = useState(null);
     const [isLoading, setLoading] = useState(true);
@@ -40,6 +40,6 @@ function DetailPage() {
             <div className='content'>{parser(note.body)}</div>
         </section>
     );
-}
+};
 
 export default DetailPage;

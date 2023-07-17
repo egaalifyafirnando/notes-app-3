@@ -22,9 +22,9 @@ const RegisterInput = ({ register }) => {
         event.preventDefault();
 
         register({
-            name: name,
-            email: email,
-            password: password,
+            name,
+            email,
+            password,
         });
     };
 

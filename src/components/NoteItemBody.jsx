@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import parser from 'html-react-parser';
 import { showFormattedDate } from '../utils/index';
 
-function NoteItemBody({ title, body, createdAt }) {
+const NoteItemBody = ({ title, body, createdAt }) => {
     const date = showFormattedDate(createdAt);
 
     return (
@@ -12,7 +12,7 @@ function NoteItemBody({ title, body, createdAt }) {
             <div className='note-item__body'>{parser(body)}</div>
         </div>
     );
-}
+};
 
 NoteItemBody.propTypes = {
     title: PropTypes.string.isRequired,

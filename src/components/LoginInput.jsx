@@ -17,8 +17,8 @@ const LoginInput = ({ login }) => {
         event.preventDefault();
 
         login({
-            email: email,
-            password: password,
+            email,
+            password,
         });
     };
 
