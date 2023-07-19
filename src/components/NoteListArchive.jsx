@@ -11,20 +11,10 @@ const NoteListArchive = ({ notes, onDelete, onUnarchive }) => {
         <div className='note-list'>
             {archiveNotes.length ? (
                 archiveNotes.map((note) => (
-                    <NoteItem
-                        key={note.id}
-                        id={note.id}
-                        onDelete={onDelete}
-                        onUnarchive={onUnarchive}
-                        {...note}
-                    />
+                    <NoteItem key={note.id} id={note.id} onDelete={onDelete} onUnarchive={onUnarchive} {...note} />
                 ))
             ) : (
-                <div className='note-items'>
-                    {locale === 'id'
-                        ? 'Arsip tidak ditemukan.'
-                        : 'Archives not found.'}
-                </div>
+                <div className='note-items'>{locale === 'id' ? 'Arsip tidak ditemukan.' : 'Archives not found.'}</div>
             )}
         </div>
     );

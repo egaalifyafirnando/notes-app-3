@@ -18,17 +18,11 @@ const LoginPage = ({ loginSuccess }) => {
 
     return (
         <section>
-            <h2>
-                {locale === 'id'
-                    ? 'Silahkan masuk untuk melanjutkan ...'
-                    : 'Please login to continue...'}
-            </h2>
+            <h2>{locale === 'id' ? 'Silahkan masuk untuk melanjutkan ...' : 'Please login to continue...'}</h2>
             <LoginInput login={onLogin} />
             <p>
                 {locale === 'id' ? 'Belum punya akun?' : 'No account yet?'}
-                <Link to='/register'>
-                    {locale === 'id' ? 'Daftar disini.' : 'register here.'}
-                </Link>
+                <Link to='/register'>{locale === 'id' ? 'Daftar disini.' : 'register here.'}</Link>
             </p>
         </section>
     );

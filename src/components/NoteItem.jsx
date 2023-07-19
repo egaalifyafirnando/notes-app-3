@@ -2,16 +2,7 @@ import PropTypes from 'prop-types';
 import NoteItemBody from './NoteItemBody';
 import NoteItemFooter from './NoteItemFooter';
 
-const NoteItem = ({
-    title,
-    body,
-    archived,
-    createdAt,
-    id,
-    onDelete,
-    onArchive,
-    onUnarchive,
-}) => {
+const NoteItem = ({ title, body, archived, createdAt, id, onDelete, onArchive, onUnarchive }) => {
     return (
         <div className='note-items'>
             <div className='note-item'>

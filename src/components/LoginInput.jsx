@@ -24,18 +24,8 @@ const LoginInput = ({ login }) => {
 
     return (
         <form onSubmit={onSubmitHandler} className='note-input'>
-            <input
-                type='email'
-                placeholder='Email'
-                value={email}
-                onChange={onEmailChangeHandler}
-            />
-            <input
-                type='password'
-                placeholder='Password'
-                value={password}
-                onChange={onPasswordChangeHandler}
-            />
+            <input type='email' placeholder='Email' value={email} onChange={onEmailChangeHandler} />
+            <input type='password' placeholder='Password' value={password} onChange={onPasswordChangeHandler} />
             <button className='note-input-item'>Masuk</button>
         </form>
     );

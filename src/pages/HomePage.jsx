@@ -5,31 +5,18 @@ import { useSearchParams } from 'react-router-dom';
 import NoteList from '../components/NoteList';
 import NoteListArchive from '../components/NoteListArchive';
 import SearchBar from '../components/SearchBar';
-import {
-    getActiveNotes,
-    deleteNote,
-    getArchivedNotes,
-    archiveNote,
-    unarchiveNote,
-} from '../utils/api';
+import { getActiveNotes, deleteNote, getArchivedNotes, archiveNote, unarchiveNote } from '../utils/api';
 
 const HomePageWrapper = () => {
     const [searchParams, setSearchParams] = useSearchParams();
-    const [defaultKeyword, setDefaultKeyword] = useState(
-        searchParams.get('keyword')
-    );
+    const [defaultKeyword, setDefaultKeyword] = useState(searchParams.get('keyword'));
 
     const onKeywordChangeHandler = (keyword) => {
         setSearchParams({ keyword });
         setDefaultKeyword(keyword);
     };
 
-    return (
-        <HomePage
-            defaultKeyword={defaultKeyword}
-            keywordChange={onKeywordChangeHandler}
-        />
-    );
+    return <HomePage defaultKeyword={defaultKeyword} keywordChange={onKeywordChangeHandler} />;
 };
 
 const HomePage = ({ defaultKeyword, keywordChange }) => {
@@ -76,9 +63,7 @@ const HomePage = ({ defaultKeyword, keywordChange }) => {
         keywordChange(newKeyword);
     };
 
-    const filteredNotes = notes.filter((note) =>
-        note.title.toLowerCase().includes(keyword.toLowerCase())
-    );
+    const filteredNotes = notes.filter((note) => note.title.toLowerCase().includes(keyword.toLowerCase()));
 
     if (isLoading) {
         return <p>Loading ...</p>;
@@ -86,22 +71,11 @@ const HomePage = ({ defaultKeyword, keywordChange }) => {
 
     return (
         <section>
-            <SearchBar
-                keyword={keyword}
-                keywordChange={onKeywordChangeHandler}
-            />
+            <SearchBar keyword={keyword} keywordChange={onKeywordChangeHandler} />
             <h2>{locale === 'id' ? 'Daftar Kontak' : 'Contacts List'}</h2>
-            <NoteList
-                notes={filteredNotes}
-                onDelete={onDeleteHandler}
-                onArchive={onArchiveHandler}
-            />
+            <NoteList notes={filteredNotes} onDelete={onDeleteHandler} onArchive={onArchiveHandler} />
             <h2>{locale === 'id' ? 'Daftar Arsip' : 'Archives List'}</h2>
-            <NoteListArchive
-                notes={filteredNotes}
-                onDelete={onDeleteHandler}
-                onUnarchive={onUnarchiveHandler}
-            />
+            <NoteListArchive notes={filteredNotes} onDelete={onDeleteHandler} onUnarchive={onUnarchiveHandler} />
         </section>
     );
 };

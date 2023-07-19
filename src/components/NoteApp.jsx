@@ -14,12 +14,8 @@ import LoginPage from '../pages/LoginPage';
 const NoteApp = () => {
     const [authedUser, setAuthedUser] = useState(null);
     const [initializing, setInitializing] = useState(true);
-    const [theme, setTheme] = useState(
-        () => localStorage.getItem('theme') || 'light'
-    );
-    const [locale, setLocale] = useState(
-        () => localStorage.getItem('locale') || 'id'
-    );
+    const [theme, setTheme] = useState(() => localStorage.getItem('theme') || 'light');
+    const [locale, setLocale] = useState(() => localStorage.getItem('locale') || 'id');
 
     const toggleTheme = () => {
         const newTheme = theme === 'light' ? 'dark' : 'light';
@@ -59,10 +55,7 @@ const NoteApp = () => {
     };
 
     const themeContextValue = useMemo(() => ({ theme, toggleTheme }), [theme]);
-    const localeContextValue = useMemo(
-        () => ({ locale, toggleLocale }),
-        [locale]
-    );
+    const localeContextValue = useMemo(() => ({ locale, toggleLocale }), [locale]);
 
     if (initializing) {
         return null;
@@ -73,16 +66,11 @@ const NoteApp = () => {
             <LocaleProvider value={localeContextValue}>
                 <div className='note-app'>
                     <header className='note-app__header'>
-                        <h1>
-                            {locale === 'id' ? 'Aplikasi Catatan' : 'Notes App'}
-                        </h1>
+                        <h1>{locale === 'id' ? 'Aplikasi Catatan' : 'Notes App'}</h1>
                         {authedUser !== null && (
                             <>
                                 <Navigation logout={onLogout} />
-                                <p
-                                    style={{ fontSize: '1.5rem' }}
-                                    className='grey'
-                                >
+                                <p style={{ fontSize: '1.5rem' }} className='grey'>
                                     Hi, {authedUser.name}
                                 </p>
                             </>
@@ -92,34 +80,15 @@ const NoteApp = () => {
                         <Routes>
                             {authedUser === null ? (
                                 <>
-                                    <Route
-                                        path='/*'
-                                        element={
-                                            <LoginPage
-                                                loginSuccess={onLoginSuccess}
-                                            />
-                                        }
-                                    />
-                                    <Route
-                                        path='/register'
-                                        element={<RegisterPage />}
-                                    />
+                                    <Route path='/*' element={<LoginPage loginSuccess={onLoginSuccess} />} />
+                                    <Route path='/register' element={<RegisterPage />} />
                                 </>
                             ) : (
                                 <>
                                     <Route path='/' element={<HomePage />} />
-                                    <Route
-                                        path='/notes/new'
-                                        element={<AddPage />}
-                                    />
-                                    <Route
-                                        path='*'
-                                        element={<NotFoundPage />}
-                                    />
-                                    <Route
-                                        path='/notes/:id'
-                                        element={<DetailPage />}
-                                    />
+                                    <Route path='/notes/new' element={<AddPage />} />
+                                    <Route path='*' element={<NotFoundPage />} />
+                                    <Route path='/notes/:id' element={<DetailPage />} />
                                 </>
                             )}
                         </Routes>

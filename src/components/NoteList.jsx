@@ -11,20 +11,10 @@ const NoteList = ({ notes, onDelete, onArchive }) => {
         <div className='note-list'>
             {activeNotes.length ? (
                 activeNotes.map((note) => (
-                    <NoteItem
-                        key={note.id}
-                        id={note.id}
-                        onDelete={onDelete}
-                        onArchive={onArchive}
-                        {...note}
-                    />
+                    <NoteItem key={note.id} id={note.id} onDelete={onDelete} onArchive={onArchive} {...note} />
                 ))
             ) : (
-                <div className='note-items'>
-                    {locale === 'id'
-                        ? 'Catatan tidak ditemukan.'
-                        : 'Notes not found.'}
-                </div>
+                <div className='note-items'>{locale === 'id' ? 'Catatan tidak ditemukan.' : 'Notes not found.'}</div>
             )}
         </div>
     );

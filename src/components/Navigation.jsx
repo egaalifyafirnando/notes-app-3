@@ -29,11 +29,7 @@ const Navigation = ({ logout }) => {
                 </li>
                 <li>
                     <button onClick={toggleTheme}>
-                        {theme === 'light' ? (
-                            <FiMoon className='grey' />
-                        ) : (
-                            <FiSun className='grey' />
-                        )}
+                        {theme === 'light' ? <FiMoon className='grey' /> : <FiSun className='grey' />}
                     </button>
                 </li>
                 <li>

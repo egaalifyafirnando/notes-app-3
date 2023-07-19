@@ -8,23 +8,11 @@ const NoteItemFooter = ({ id, archived, onDelete, onArchive, onUnarchive }) => {
                 <img src='/images/detail.png' className='note-item__button' />
             </Link>
             {archived ? (
-                <img
-                    src='/images/unarchive.png'
-                    onClick={() => onUnarchive(id)}
-                    className='note-item__button'
-                />
+                <img src='/images/unarchive.png' onClick={() => onUnarchive(id)} className='note-item__button' />
             ) : (
-                <img
-                    src='/images/archive.png'
-                    onClick={() => onArchive(id)}
-                    className='note-item__button'
-                />
+                <img src='/images/archive.png' onClick={() => onArchive(id)} className='note-item__button' />
             )}
-            <img
-                src='/images/trash.png'
-                onClick={() => onDelete(id)}
-                className='note-item__button'
-            />
+            <img src='/images/trash.png' onClick={() => onDelete(id)} className='note-item__button' />
         </div>
     );
 };

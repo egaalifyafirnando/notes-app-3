@@ -30,18 +30,8 @@ const RegisterInput = ({ register }) => {
 
     return (
         <form onSubmit={onSubmitHandler} className='note-input'>
-            <input
-                type='text'
-                placeholder='Nama'
-                value={name}
-                onChange={onNameChange}
-            />
-            <input
-                type='email'
-                placeholder='Email'
-                value={email}
-                onChange={onEmailChange}
-            />
+            <input type='text' placeholder='Nama' value={name} onChange={onNameChange} />
+            <input type='email' placeholder='Email' value={email} onChange={onEmailChange} />
             <input
                 type='password'
                 placeholder='Password'
